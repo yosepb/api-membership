@@ -50,7 +50,7 @@ app.post("/signin", async (req, res) => {
       email: user.email,
     },
     process.env.TOKEN_KEY,
-    { expiresIn: "24h" }
+    { expiresIn: "12h" }
   );
 
   return res.status(200).json({ token });

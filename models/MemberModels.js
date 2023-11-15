@@ -1,16 +1,15 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-exports.MemberModels = mongoose.model(
+exports.MemberModel = mongoose.model(
   "Member",
   new Schema({
-    _id: false,
-    peserta: {
+    peserta_id: {
       type: Schema.Types.ObjectId,
       ref: "Peserta",
       required: true,
     },
-    kelas: {
+    kelas_id: {
       type: Schema.Types.ObjectId,
       ref: "Kelas",
       required: true,
