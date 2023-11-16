@@ -3,6 +3,12 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { UserModel } = require("../models/UserModels");
 const app = express();
+const IsAuthenticated = require("../middlewares/IsAuthenticated");
+
+// endpoint cek token
+app.get("/check-token", [IsAuthenticated], async (req, res) => {
+  res.status(200).json({ detail: "token terverifikasi" });
+});
 
 // endpoint proses daftar
 app.post("/signup", async (req, res) => {
@@ -31,6 +37,10 @@ app.post("/signin", async (req, res) => {
 
   if (!user) {
     return res.status(401).json({ detail: "User belum terdaftar." });
+  }
+
+  if (!user.isStaff) {
+    return res.status(401).json({ detail: "User bukan staff." });
   }
 
   const isValidPassword = await bcrypt.compare(
