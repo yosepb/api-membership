@@ -8,19 +8,6 @@ exports.KelasModel = mongoose.model(
     namaTrainer: { type: String, required: true },
     tanggalMulai: { type: Date, default: new Date() },
     isActive: { type: Boolean, default: true },
-    username: [
-      {
-        type: String,
-        ref: "UserModel",
-        default: null,
-      },
-    ],
-    peserta_id: [
-      {
-        type: String,
-        ref: "UserModel",
-        default: null,
-      },
-    ],
+    username: { type: String, ref: "UserModel", default: null },
   })
 );
