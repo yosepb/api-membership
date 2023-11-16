@@ -4,7 +4,6 @@ const app = express();
 
 const { KelasModel } = require("../models/KelasModels");
 const { UserModel } = require("../models/UserModels");
-const { MemberModel } = require("../models/MemberModels");
 const IsAuthenticated = require("../middlewares/IsAuthenticated");
 
 // endpoint create data

@@ -11,8 +11,4 @@ exports.ROUTES = [
     path: "/peserta",
     resource: "PesertaResources",
   },
-  {
-    path: "/member",
-    resource: "MemberResources",
-  },
 ];
