@@ -5,6 +5,7 @@ const app = express();
 const { PesertaModel } = require("../models/PesertaModels");
 const { UserModel } = require("../models/UserModels");
 const IsAuthenticated = require("../middlewares/IsAuthenticated");
+const { KelasModel } = require("../models/KelasModels");
 
 // endpoint create data
 app.post("/", [IsAuthenticated], async (req, res) => {
@@ -42,6 +43,18 @@ app.put("/:id", [IsAuthenticated], async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(404).json({ detail: "404 Resource not found" });
   }
+
+  let keepData = [];
+
+  await Promise.all(
+    req.body.kelas_id.map(async (kelasId) => {
+      const kelasData = await KelasModel.findById(kelasId);
+      if (kelasData != null) {
+        keepData.push(kelasId);
+      }
+    })
+  );
+  req.body.kelas_id = keepData;
 
   const result = await PesertaModel.findOneAndUpdate(
     { _id: req.params.id },
