@@ -8,11 +8,11 @@ const IsAuthenticated = require("../middlewares/IsAuthenticated");
 
 // endpoint create data
 app.post("/", [IsAuthenticated], async (req, res) => {
-  const user = await UserModel.findOne({ username: req.body.username });
+  // const user = await UserModel.findOne({ username: req.body.username });
 
-  if (!user) {
-    return res.status(401).json({ detail: "User tidak ditemukan." });
-  }
+  // if (!user) {
+  //   return res.status(401).json({ detail: "User tidak ditemukan." });
+  // }
 
   await KelasModel.create(req.body);
   return res.status(201).json(req.body);

@@ -9,5 +9,12 @@ exports.PesertaModel = mongoose.model(
     isActive: { type: Boolean, default: true },
     tanggalGabung: { type: Date, default: new Date() },
     username: { type: String, ref: "UserModel", default: null },
+    kelas_id: [
+      {
+        type: String,
+        ref: "KelasModel",
+        default: null,
+      },
+    ],
   })
 );
